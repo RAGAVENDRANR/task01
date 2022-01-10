@@ -1,0 +1,9 @@
+  <html>
+    <h1>REACTIVE FORM </h1>
+    <form [formGroup]="dataform">
+      <label for="n1"> USERNAME : <input type="text" id="n1" formControlName="name"></label><br>
+      <label for="n2">PASSWORD :  <input type="password" id="n2" formControlName="password" ></label>
+      <br>
+      <button type="submit" [disabled]="!dataform.valid" (click)="bye()">SUBMIT</button>
+    </form>
+  </html>

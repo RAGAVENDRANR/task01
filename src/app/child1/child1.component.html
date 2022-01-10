@@ -1,0 +1,91 @@
+<html>
+<div>
+    <h1>- - - Enter the detatiles bellow and use the Dropdown button for changing the fields - - - </h1>
+</div>
+<!--CREATING THE REACTIVE FORM NO : 1-->
+<div >
+    <div class="dropdown">
+    <b>SELECT TO CHOOSE THE FIELD : </b><select [(ngModel)]="value" >CLICK DOWN
+        <option value="on1">PERSONAL DETATILES</option>
+        <option value="on2">EDUCATIONAL  DETATILES</option>
+        <option value="on3">CONTACT  DETATILES</option>
+    </select>
+    <p style="color: red;">*Enter all the fields</p>
+</div >
+<ng-container *ngIf="value == 'on1'">
+    <form [formGroup]="reactiveform1" class="form1">
+        <h2>ENTER USER DETATILES : </h2>
+        <label><input type="text" placeholder="ENTER THE FIRSTNAME" id="firstname" formControlName="firstname"></label><br>
+        <label><input type="text" placeholder="ENTER THE LASTNAME" id="lastname" formControlName="lastname"></label><br>
+        <label>MALE:<input type="radio" placeholder="" id="male" formControlName="gender" value="male"></label>
+        <label>FEMALE:<input type="radio" placeholder="" id="female" formControlName="gender" value="female"></label>
+        <label>TRANSGENDER:<input type="radio" placeholder="TRANSGENDER" id="transgender" formControlName="gender" value="transgender"></label><br>
+        <label><input type="email" placeholder="ENTER THE EMAIL-ID" id="email" formControlName="email"></label><br>
+        <label><input type="text" placeholder="ENTER THE CONTACT NUMBER" id="contactnumber" formControlName="contactnumber"></label><br>
+        <label><button class="btn btn-success" type="submit"  [disabled]="reactiveform1.invalid" (click)="alerter1()">SUBMIT DATA</button></label><br>
+    </form> 
+</ng-container>   
+</div><br>
+<div>
+    <ng-container *ngIf="value == 'on2'">
+    <form [formGroup]="reactiveform2" class="form1">
+        <h2>ENTER YOUR EDUCATIONAL DETATILES :</h2>
+        <input type="number" placeholder="ENTER THE 10 STD MARK" id="10mark" formControlName="mark10"><br>
+        <input type="number" placeholder="ENTER THE 12 STD MARK" id="12mark" formControlName="mark12"><br>
+        <input type="number" placeholder="ENTER THE UG MARK" id="ugmark" formControlName="ugmark"><br>
+        <input type="number" placeholder="ENTER THE PG MARK" id="pgmark" formControlName="pgmark" ><br>
+        <button class="btn btn-success" type="submit"  [disabled]="reactiveform2.invalid"  (click)="alerter2()">SUBMIT DATA</button><br>
+    </form>   
+</ng-container> 
+</div>
+<div>
+    <ng-container *ngIf="value == 'on3'">
+    <form [formGroup]="reactiveform3" class="form1">
+        <h2>ENTER YOUR ADDRESS :</h2>
+        <input type="number" placeholder="ENTER THE DOOR NUMBER" id="doornumber" formControlName="doornumber"><br>
+        <input type="text" placeholder="ENTER THE STREET NAME" id="streetname" formControlName="streetname"><br>
+        <input type="text" placeholder="ENTER THE AREA NAME" id="areaname" formControlName="areaname"><br>
+        <input type="text" placeholder="ENTER THE CITY NAME" id="cityname" formControlName="cityname"><br>
+        <input type="text" placeholder="ENTER THE STATE NAME" id="statename" formControlName="statename"><br>
+        <input type="text" placeholder="ENTER THE COUNTRY NAME" id="countryname" formControlName="countryname"><br>
+        <input type="number" placeholder="ENTER THE PIN CODE" id="pincode" formControlName="pincode"><br>
+        <button class="btn btn-success" type="submit" [disabled]="reactiveform3.invalid" (click)="alerter3()">SUBMIT DATA</button><br>
+    </form>
+</ng-container>
+</div>    
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

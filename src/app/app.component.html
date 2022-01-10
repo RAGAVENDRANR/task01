@@ -1,0 +1,104 @@
+<html style="padding: 1em;margin:.25em;width:auto;height:auto">
+  <title>TASK01</title>
+<h1>TABLE SORTING AND FILTERING:</h1>
+
+<!--NAVIGATION IS PERFORMED HERE-->
+<nav>
+  <table class="table" style="background-color:burlywood;border-color:rgb(97, 95, 95);font-weight:bolder"><tr>
+  <td><a type="button" class ="button"  routerLink="/routepage" >ROUTER_PAGE </a></td>
+  <td><a type="button" class ="button" routerLink="/nopage">NO_PAGE</a></td>
+  <td><a type="button" class ="button" routerLink="/child1">NEXT PAGE</a></td>
+  <td> <a type="button" class ="button" routerLink="/child2">LAST_PAGE</a></td></tr>
+</table>
+</nav>
+<router-outlet></router-outlet>
+
+<!--SEARCH ELEMENT-->
+
+
+<div class="form-group row">
+  <label for="search" class="col-sm-2 col-form-label" style="text-align:end;font-weight:bolder ;background-color:rgb(177, 245, 177)" placeholder="Type here to search ">FOR SEARCH USER ENTER  HERE === > </label>
+
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="search" [(ngModel)]="searchstring" style="background-color:rgb(184, 231, 231)"/>
+  </div>
+</div>
+
+<!--Creating the Reactive form--> 
+
+<div style="padding: 30px;color:black;position:relative;text-align:end;" >
+
+<form [formGroup]="dataform">
+  
+  <input type="text" formControlName="name" placeholder="ENTER YOUR USERNAME" class="inp" ><br>
+
+  <input type="number" formControlName="age" placeholder="ENTER YOUR AGE" class="inp" ><br>
+  
+  <input type="text" formControlName="profession" placeholder="ENTER YOUR PROFESSION" class="inp" ><br>
+  
+  <input type="text" formControlName="location" placeholder="ENTER YOUR CURRENT LOCATION" class="inp" ><br>
+
+<!-- 
+  CLICK TO CHECKOUT :<input type="checkbox" formControlName="check" class="inp"  > <br>  -->
+
+  <!-- <mat-slide-toggle [(ngModel)]=check formControlName="check" style="font-size: larger;color:blueviolet ;position:relative;display:inline-table">SLIDE TO CHECK IN ! ! !</mat-slide-toggle>{{check}}<br> -->
+  <mat-slide-toggle [(ngModel)]=check formControlName="check" 
+    style="font-size: larger;color:blueviolet ;position:relative;display:inline-table" checkedLabelText="yes" uncheckedLabelText="no">SLIDE TO CHECK IN ! ! !</mat-slide-toggle><br>
+    <!-- {{check}} -->
+  
+  
+<!--Button for adding New User data and also for updatating the datas-->
+
+  <button type="submit" style="background-color: chartreuse;" (click)="passdata();">{{Show ? 'ADD USER':'UPDATE DATA'}}</button> 
+
+  <button (click)="clear();">CLOSE</button>
+
+</form>
+</div>
+<!-- TABLE IS CREATEAD USING THE DATA FROM THE JSON -->
+
+<table class=table style="background-color:rgb(231, 238, 210)" >
+  <thead class="thead-dark" style="background-color:white;color:rgb(10, 10, 10)" >
+    <tr>
+      <th (click)="sort('id')">USER ID&nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('name')">USER NAME&nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('age')">USER AGE&nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('profession')">USER PROFESSION&nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('location')">USER LOCATION&nbsp;<i class="fa fa-sort"></i></th>
+      <!-- <th (click)="sort('check')">CHECK STATUS&nbsp;<i class="fa fa-sort"></i></th> -->
+      <th (click)="sort('check')">STATUS&nbsp;<i class="fa fa-sort"></i></th>
+      <th >ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let items of data | searchdata:searchstring |orderBy:key:!reverse ">
+      <td>
+        {{items.id }}
+      </td>
+      <td >
+        {{items.name | uppercase}}
+      </td>
+      <td >
+        {{items.age}}
+      </td>
+      <td >
+        {{items.profession | uppercase}}
+      </td>
+      <td >
+        {{items.location | uppercase}}
+      </td>
+      <!-- <td><input type="checkbox" [value]="changedvalue"/></td>{{changedvalue}} -->
+      <td>
+        {{items.check}}
+      </td>
+      <td>
+        <button class="button" (click)="editdata(items.id);onclick()">EDIT</button>
+        <button class="button" (click)="deletedata(items.id)" >DELETE</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="value === on1">
+CHEKBOX: <input type="button" [value]=on1> 
+</div>
+</html> 
